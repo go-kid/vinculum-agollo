@@ -1,0 +1,11 @@
+{
+  "appId": "SampleApp",
+  "cluster": "vinculum-agollo-demo",
+  "namespaceName": "config.yaml",
+  "ip": "http://localhost:8080",
+  "isBackupConfig": false,
+  "backupConfigPath": "",
+  "secret": "",
+  "label": "",
+  "syncServerTimeout": 0
+}
