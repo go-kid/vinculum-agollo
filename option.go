@@ -6,8 +6,8 @@ import (
 	"github.com/go-kid/vinculum"
 )
 
-func Plugin(cfg *config.AppConfig, configPath string, configJson []byte) app.SettingOption {
-	agolloLoader := NewConfigLoader(cfg, configPath, configJson)
+func Plugin(cfg *config.AppConfig, configPath string, configJson []byte, marshaller Marshaller) app.SettingOption {
+	agolloLoader := NewConfigLoader(cfg, configPath, configJson, marshaller)
 	client := agolloLoader.(*loader).client
 	spy := NewSpy(client, nil)
 	return app.Options(

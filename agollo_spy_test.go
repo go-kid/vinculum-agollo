@@ -32,7 +32,7 @@ func (c *Config) Prefix() string {
 
 func TestInit(t *testing.T) {
 	iocApp := ioc.RunTest(t,
-		Plugin(nil, "agollo.json", nil),
+		Plugin(nil, "agollo.json", nil, nil),
 		app.SetComponents(
 			&tCmp{},
 		),

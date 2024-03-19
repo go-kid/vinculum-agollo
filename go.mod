@@ -4,8 +4,8 @@ go 1.20
 
 require (
 	github.com/apolloconfig/agollo/v4 v4.3.1
-	github.com/go-kid/ioc v1.3.4
-	github.com/go-kid/vinculum v1.1.1
+	github.com/go-kid/ioc v1.4.1
+	github.com/go-kid/vinculum v1.1.2
 	gopkg.in/yaml.v3 v3.0.1
 )
 
@@ -16,7 +16,6 @@ require (
 	github.com/hashicorp/hcl v1.0.0 // indirect
 	github.com/magiconair/properties v1.8.7 // indirect
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
-	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/pelletier/go-toml/v2 v2.0.6 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/samber/lo v1.38.1 // indirect
