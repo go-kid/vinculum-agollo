@@ -4,8 +4,8 @@ go 1.20
 
 require (
 	github.com/apolloconfig/agollo/v4 v4.3.1
-	github.com/go-kid/ioc v1.4.1
-	github.com/go-kid/vinculum v1.1.2
+	github.com/go-kid/ioc v1.4.2
+	github.com/go-kid/vinculum v1.1.4
 	gopkg.in/yaml.v3 v3.0.1
 )
 
