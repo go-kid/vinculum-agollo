@@ -7,7 +7,7 @@ import (
 	"github.com/apolloconfig/agollo/v4/env/config"
 	"github.com/go-kid/ioc/configure"
 	"github.com/go-kid/ioc/util/fas"
-	"github.com/go-kid/ioc/util/properties"
+	"github.com/go-kid/properties"
 	"gopkg.in/yaml.v3"
 	"os"
 )
@@ -57,8 +57,7 @@ func (l *loader) LoadConfig() ([]byte, error) {
 		prop.Set(key.(string), value)
 		return true
 	})
-	expand := prop.Expand()
-	return l.marshal(expand)
+	return l.marshal(prop)
 }
 
 func NewConfigLoader(cfg *config.AppConfig, configPath string, configJson []byte, marshaller Marshaller) configure.Loader {

@@ -5,7 +5,7 @@ import (
 	"github.com/apolloconfig/agollo/v4"
 	"github.com/apolloconfig/agollo/v4/env/config"
 	"github.com/apolloconfig/agollo/v4/storage"
-	"github.com/go-kid/ioc/configure"
+	"github.com/go-kid/properties"
 	"github.com/go-kid/vinculum"
 	"os"
 )
@@ -13,14 +13,17 @@ import (
 type spy struct {
 	config *config.AppConfig
 	client agollo.Client
-	ch     chan vinculum.UpdateHandler
+	ch     chan<- properties.Properties
+}
+
+func (s *spy) RegisterChannel(ch chan<- properties.Properties) {
+	s.ch = ch
 }
 
 func NewSpy(client agollo.Client, c *config.AppConfig) vinculum.Spy {
 	return &spy{
 		config: c,
 		client: client,
-		ch:     make(chan vinculum.UpdateHandler),
 	}
 }
 
@@ -49,22 +52,12 @@ func (s *spy) Init() error {
 	return nil
 }
 
-func (s *spy) Change() <-chan vinculum.UpdateHandler {
-	return s.ch
-}
-
-func (s *spy) Close() error {
-	s.client.Close()
-	return nil
-}
-
 func (s *spy) OnChange(event *storage.ChangeEvent) {
-	s.ch <- func(binder configure.Binder) error {
-		for path, change := range event.Changes {
-			binder.Set(path, change.NewValue)
-		}
-		return nil
+	p := properties.New()
+	for path, change := range event.Changes {
+		p.Set(path, change.NewValue)
 	}
+	s.ch <- p
 }
 
 func (s *spy) OnNewestChange(event *storage.FullChangeEvent) {
