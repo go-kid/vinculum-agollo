@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/go-kid/ioc"
 	"github.com/go-kid/ioc/app"
+	"github.com/go-kid/vinculum"
 	"os"
 	"os/signal"
 	"syscall"
@@ -32,9 +33,10 @@ func (c *Config) Prefix() string {
 
 func TestInit(t *testing.T) {
 	iocApp := ioc.RunTest(t,
-		Plugin(nil, "agollo.json", nil, nil),
+		Plugin(nil, "agollo.json"),
 		app.SetComponents(
 			&tCmp{},
+			vinculum.New(),
 		),
 	)
 	defer iocApp.Close()
